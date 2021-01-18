@@ -25,7 +25,7 @@
     ```
     Например:
     ```sh
-        $ sudo docker-compose run web python manage.py migrate
+        $ sudo docker-compose run web python manage.py migrate api
     ```
     Перед выполнением команд Django необходимо приостановить работу приложения сочетанием клавиш *CTRL+C*.
 

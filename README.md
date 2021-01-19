@@ -13,21 +13,31 @@
 	- POSTGRES_DB
 	- POSTGRES_USER
 	- POSTGRES_PASSWORD
-   Если вы внесли изменения в docker-compose.yml, то не забудьте внести их в файл settings.py
+
+	Если вы внесли изменения в docker-compose.yml, то не забудьте внести их в файл settings.py
 5. Откройте консоль в директории проекта и выполните команду:
     ```sh
         $ docker-compose up
     ```
     Данная команда отвечает за запуск приложения. При первом вызове будет произведена первоначальная настройка, а также установка необходимых зависимостей.
-6. Для вызова команд Django(создание миграций, очистка сессий и т.п.) используйте следующую команду:
+6. Приостановите работу приложения сочетанием клавиш *CTRL+C* и выполните поочередно следующие команды:
     ```sh
-        $ sudo docker-compose run web python manage.py COMMAND_NAME
+        $ sudo docker-compose run web python manage.py migrate
     ```
-    Например:
+    ```sh
+        $ sudo docker-compose run web python manage.py makemigrations api
+    ```
     ```sh
         $ sudo docker-compose run web python manage.py migrate api
     ```
-    Перед выполнением команд Django необходимо приостановить работу приложения сочетанием клавиш *CTRL+C*.
+    Данные команды создадут необходимые таблицы в БД. Для создание суперпользователя БД введите следующую команду:
+     ```sh
+        $ sudo docker-compose run web python manage.py createsuperuser
+    ```
+7. Приложение готово к работе. Запустите приложение командой:
+    ```sh
+        $ docker-compose up
+    ```
 
 ### Использование
 
